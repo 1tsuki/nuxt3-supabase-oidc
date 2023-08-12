@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "yarn build && sed -I.bak \"s/functions.https.onRequest/functions.region('asia-northeast1').https.onRequest/\" .output/server/chunks/nitro/firebase.mjs && firebase deploy"
+    "deploy": "yarn build && firebase deploy"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

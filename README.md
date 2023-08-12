@@ -12,8 +12,8 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 2. Setup Nuxt3 deployment to firebase by following [Nitro - Firebase](https://nitro.unjs.io/deploy/providers/firebase)
     - Recommended to also following instructions on [Nitro - Using 2nd Generation Firebase Functions](https://nitro.unjs.io/deploy/providers/firebase#using-2nd-generation-firebase-functions)
     - tips
-        - run `yarn add -D firebase-admin firebase-functions firebase-functions-test`
-        - deploy command `yarn build && sed -I.bak \"s/functions.https.onRequest/functions.region('asia-northeast1').https.onRequest/\" .output/server/chunks/nitro/firebase.mjs && firebase deploy`
+        - run `yarn add -D firebase-admin firebase-functions firebase-functions-test` to add dependencies
+        - add ``nitro: { preset: 'firebase', replace: { [`functions.https.onRequest`]: `functions.region('asia-northeast1').https.onRequest` } }`` to `nuxt.config.js` to use firebase and deploy to asia-northeast1
         - if `Your client does not have permission to get URL /server/ from this server.' nuxt firebase` error occurs on server
             - [stack overflow](https://stackoverflow.com/questions/47511677/firebase-cloud-function-your-client-does-not-have-permission-to-get-url-200-fr)
     - using firebase v2 is better though settings on `nuxt.config.js`doesn't work
