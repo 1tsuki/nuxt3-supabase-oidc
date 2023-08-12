@@ -6,11 +6,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "yarn build && sed -I.bak \"s/functions.https.onRequest/functions.region('asia-northeast1').https.onRequest/\" .output/server/chunks/nitro/firebase.mjs && firebase deploy"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.3",
+    "firebase-admin": "^11.10.1",
+    "firebase-functions": "^4.4.1",
+    "firebase-functions-test": "^3.1.0",
     "nuxt": "^3.6.5"
   },
   "dependencies": {
