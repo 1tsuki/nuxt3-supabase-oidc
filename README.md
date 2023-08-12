@@ -3,6 +3,17 @@ Sample code for using Supabase and OpenID Connect together in Nuxt3
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Goals
+
+- firebase
+  - [x] deploy Nuxt3 on firebase with SSR
+    - [ ] use firebase cloud functions gen 2 environment
+  - [ ] connect to redis from firebase cloud functions
+  - [ ] connect to supabase postgresql from firebase cloud functions
+  - [ ] issue supabase JWT with OIDC ID token
+- supabase
+  - [ ] access postgREST with JWT issued by firebase cloud functions
+
 ## Steps
 
 ### Deploy Nuxt3 on firebase hosting, cloud functions
