@@ -3,11 +3,11 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "docker-compose up -d && nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "yarn build && firebase deploy"
+    "deploy": "yarn build --dotenv .env.production && firebase deploy"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

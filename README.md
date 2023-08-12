@@ -19,7 +19,7 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 ### Deploy Nuxt3 on firebase hosting, cloud functions
 [Nuxt3 - Deployment](https://nuxt.com/docs/getting-started/deployment#supported-hosting-providers) > [Nitro - Firebase](https://nitro.unjs.io/deploy/providers/firebase)
 
-1. create firebase project via firebase console
+1. Create firebase project via firebase console
 2. Setup Nuxt3 deployment to firebase by following [Nitro - Firebase](https://nitro.unjs.io/deploy/providers/firebase)
     - Recommended to also following instructions on [Nitro - Using 2nd Generation Firebase Functions](https://nitro.unjs.io/deploy/providers/firebase#using-2nd-generation-firebase-functions)
     - tips
@@ -31,8 +31,8 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
             - [stack overflow](https://stackoverflow.com/questions/47511677/firebase-cloud-function-your-client-does-not-have-permission-to-get-url-200-fr)
     - using firebase v2 is better though settings on `nuxt.config.js`doesn't work
         - `nitro: { firebase: { gen: 2 } }`
-
-
+3. Setup redis and allow VPC access from cloud functions by following [Google Cloud - Memorystore](https://cloud.google.com/memorystore/docs/redis/connect-redis-instance-functions?hl=ja)
+    - [Nuxt3 - ServerStorage](https://nuxt.com/docs/guide/directory-structure/server#example-using-redis)
 
 
 ## Setup
