@@ -5,6 +5,6 @@ export default defineNuxtConfig({
     preset: 'firebase',
     replace: {
       [`functions.https.onRequest`]: `functions.region('asia-northeast1').https.onRequest`,
-    }
+    },
   }
 })
