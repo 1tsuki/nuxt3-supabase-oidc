@@ -1,10 +1,13 @@
 <script setup lang="ts">
+  import { createClient } from '@supabase/supabase-js';
+
 
   const resDataSuccess = ref('')
   const resData = ref({})
   const jwt = ref('')
+  const users = ref({})
   const post = async () => {
-    const { data } = await useFetch('/api/test', {
+    const { data } = await useFetch('/api/session', {
       method: 'post',
       body: { text: 'Nuxt is Awesome!' }
     })
@@ -12,17 +15,31 @@
   }
   
   const get = async () => {
-    const { data } = await useFetch('/api/test')
+    const { data } = await useFetch('/api/session')
     resData.value = data.value || ''
   }
 
+  const config = useRuntimeConfig()
+  
   const getJwt = async () => {
     const { data } = await useFetch('/api/jwt')
     jwt.value = data.value || ''
   }
 
-  const config = useRuntimeConfig()
-  
+  const getData = async() => {
+    
+    const supabase = createClient(
+      config.public.SUPABASE_URL,
+      config.public.SUPABASE_ANON_KEY,
+      { global: { headers: { Authorization: `Bearer ${jwt.value}` } } }
+    )
+
+    console.log('getdata')
+    const { data } = await useAsyncData(async () => {
+      const { data } = await supabase.from('users').select('*')
+      users.value = data || {}
+    })
+  }
 </script>
 
 <template>
@@ -37,13 +54,16 @@
     
     <div>
       <h2>JWT</h2>
-      <div><button @click="getJwt">get</button></div>
-    <div>Get Data: {{ JSON.stringify(jwt) }}</div>
+      <div><button @click="getJwt">getJwt</button></div>
+      <div>Get Data: {{ JSON.stringify(jwt) }}</div>
+      <div><button @click="getData">getData</button></div>
+      <p>{{ JSON.stringify(users) }}</p>
     </div>
     
     <div>
       <h2>Runtime config in client side</h2>
       <p>{{ JSON.stringify(config) }}</p>
+      
     </div>
   </div>
 </template>

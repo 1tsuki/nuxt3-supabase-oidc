@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
-    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET
+    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+    }
   },
   nitro: {
     preset: 'firebase',
