@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
   runtimeConfig: {
     SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
     public: {
