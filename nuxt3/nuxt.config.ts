@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET
+  },
   nitro: {
     preset: 'firebase',
     replace: {
