@@ -6,11 +6,14 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 ## Goals
 
 - firebase
-  - [x] deploy Nuxt3 on firebase with SSR
+  - [x] deploy Nuxt3 on firebase with SSR enabled
     - [ ] use firebase cloud functions gen 2 environment
-  - [ ] connect to redis from firebase cloud functions
+  - [x] connect to cloud memorystore redis from firebase cloud functions
   - [ ] connect to supabase postgresql from firebase cloud functions
   - [ ] issue supabase JWT with OIDC ID token
+- nuxt3
+  - [ ] issue sessionID on server side and set-cookie to client
+  - [ ] set ttl for server side session
 - supabase
   - [ ] access postgREST with JWT issued by firebase cloud functions
 
