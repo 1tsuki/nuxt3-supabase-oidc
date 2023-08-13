@@ -3,10 +3,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   runtimeConfig: {
-    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
+    supabaseJwtSecret: process.env.SUPABASE_JWT_SECRET,
+    sessionCookieName: process.env.SESSION_COOKIE_NAME || '__session',
+    sessionCookieSecret: process.env.SESSION_COOKIE_SECRET || 'secret',
+    sessionExpires: parseInt(process.env.SESSION_EXPIRES || '60 * 15', 10),
+    sessionIdPrefix: process.env.SESSION_ID_PREFIX || 'session:',
     public: {
-      SUPABASE_URL: process.env.SUPABASE_URL,
-      SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+      supabaseUrl: process.env.SUPABASE_URL,
+      supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
     }
   },
   nitro: {

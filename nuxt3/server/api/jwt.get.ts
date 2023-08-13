@@ -9,5 +9,5 @@ export default defineEventHandler(async (event) => {
   }
 
   const { sign } = jwt
-  return sign(payload, config.SUPABASE_JWT_SECRET)
+  return sign(payload, config.supabaseJwtSecret)
 })

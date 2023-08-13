@@ -13,24 +13,23 @@
     })
     resDataSuccess.value = data.value || ''
   }
-  
+
   const get = async () => {
     const { data } = await useFetch('/api/session')
     resData.value = data.value || ''
   }
 
   const config = useRuntimeConfig()
-  
+
   const getJwt = async () => {
     const { data } = await useFetch('/api/jwt')
     jwt.value = data.value || ''
   }
 
   const getData = async() => {
-    
     const supabase = createClient(
-      config.public.SUPABASE_URL,
-      config.public.SUPABASE_ANON_KEY,
+      config.public.supabaseUrl,
+      config.public.supabaseAnonKey,
       { global: { headers: { Authorization: `Bearer ${jwt.value}` } } }
     )
 
@@ -47,11 +46,11 @@
     <div>
       <h2>sessions</h2>
       <div><button @click="post">post</button></div>
-      <div>Post state: {{ resDataSuccess }}</div>  
+      <div>Post state: {{ resDataSuccess }}</div>
       <div><button @click="get">get</button></div>
       <div>Get Data: {{ JSON.stringify(resData) }}</div>
     </div>
-    
+
     <div>
       <h2>JWT</h2>
       <div><button @click="getJwt">getJwt</button></div>
@@ -59,11 +58,10 @@
       <div><button @click="getData">getData</button></div>
       <p>{{ JSON.stringify(users) }}</p>
     </div>
-    
+
     <div>
       <h2>Runtime config in client side</h2>
       <p>{{ JSON.stringify(config) }}</p>
-      
     </div>
   </div>
 </template>

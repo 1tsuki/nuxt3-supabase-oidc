@@ -9,8 +9,8 @@
     "public": ".output/public",
     "cleanUrls": true,
     "rewrites": [
-      { 
-        "source": "**", 
+      {
+        "source": "**",
         "function": "server",
         "region": "asia-northeast1"
       }
