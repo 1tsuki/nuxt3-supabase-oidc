@@ -102,4 +102,4 @@ node_modules
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,nuxtjs,firebase
-data/redis/dump.rdb
+nuxt3/data/redis/
