@@ -33,6 +33,8 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
         - `nitro: { firebase: { gen: 2 } }`
 3. Setup redis and allow VPC access from cloud functions by following [Google Cloud - Memorystore](https://cloud.google.com/memorystore/docs/redis/connect-redis-instance-functions?hl=ja)
     - [Nuxt3 - ServerStorage](https://nuxt.com/docs/guide/directory-structure/server#example-using-redis)
+    - tips
+        - add ``"vpc-connector": "projects/<project-id>/locations/<region>/connectors/<connector-name>"`` to `firebase.json` > `functions`
 
 
 ## Setup

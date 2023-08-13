@@ -1,7 +1,8 @@
 {
   "functions": {
     "source": ".output/server",
-    "runtime": "nodejs18"
+    "runtime": "nodejs18",
+    "vpc-connector": "projects/nuxt3-supabase-tryout/locations/asia-northeast1/connectors/cloud-function-redis"
   },
   "hosting": {
     "site": "nuxt3-supabase-tryout",
