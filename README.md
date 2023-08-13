@@ -1,23 +1,26 @@
 # nuxt3-supabase-oidc
-Sample code for using Supabase and OpenID Connect together in Nuxt3
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A repository for testing how to implement a system using Nuxt3, Supabase, and Firebase in conjunction, while also integrating with a proprietary OIDC IdP.
 
 ## Goals
 
+- Nuxt3
+  - hosting
+    - [x] deploy on firebase (hosting, cloud functions)
+    - [x] run with SSR disabled (envisioning usage in a SaaS web application)
+  - enable session w/redis
+    - [x] issue sessionID on server side and set-cookie to client
+    - [ ] set ttl for server side session
+    - [ ] save sessionID related values into server side redis (state, nonce, IdP access_token, IdP refresh_token)
+    - [ ] connect server APIs to redis hosted on firebase memorystore
+  - Supabase JWT
+    - [x] issue custom Supabase JWT securely
+    - [X] call supabase database with custom issued JWT
 - firebase
-  - [x] deploy Nuxt3 on firebase with SSR enabled
-    - [ ] use firebase cloud functions gen 2 environment
   - [x] connect to cloud memorystore redis from firebase cloud functions
   - [ ] connect to supabase postgresql from firebase cloud functions
-  - [ ] issue supabase JWT with OIDC ID token
-- nuxt3
-  - [ ] issue sessionID on server side and set-cookie to client
-  - [ ] set ttl for server side session
-- supabase
-  - [ ] access postgREST with JWT issued by firebase cloud functions
+  - [ ] use firebase cloud functions gen 2 environment
 
-## Steps
+## Setup
 
 ### Deploy Nuxt3 on firebase hosting, cloud functions
 [Nuxt3 - Deployment](https://nuxt.com/docs/getting-started/deployment#supported-hosting-providers) > [Nitro - Firebase](https://nitro.unjs.io/deploy/providers/firebase)
@@ -45,14 +48,18 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 Make sure to install the dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
 # yarn
 yarn install
+```
+
+Implement `.env` and `.env.production` file in `./nuxt3`:
+
+```
+REDIS_HOST=localhost
+REDIS_PORT=6379
+SUPABASE_JWT_SECRET="YOUR_SUPABASE_JWT_SECRET_HERE"
+SUPABASE_URL="YOUR_SUPABASE_API_URL_HERE"
+SUPABASE_ANON_KEY="YOUR_SUPABASE_ANONYMOUS_KEY_HERE"
 ```
 
 ## Development Server
@@ -60,12 +67,6 @@ yarn install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
 # yarn
 yarn dev
 ```
@@ -75,27 +76,6 @@ yarn dev
 Build the application for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
 # yarn
-yarn build
+yarn deploy
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
