@@ -1,12 +1,18 @@
 # nuxt3-supabase-oidc
-A repository for testing how to implement a system using Nuxt3, Supabase, and Firebase in conjunction, while also integrating with a proprietary OIDC IdP.
+A repository to figure out how to implement a system using Nuxt3, Supabase, and Firebase in conjunction, while also integrating with a proprietary OIDC IdP.
 
 ## TL;DR (WIP)
 
-- Using Supabase with custom issued JWT worked fine, so it seems there are no major issues with OIDC integration. However, since the registration timing of JWT to the Supabase client is limited on 'createClient', additional thought is required to make it handy.
-- Implementation of Nuxt3 / useStorage may not be mature yet. While it's easy to build access to Redis, it's hard to appropriately set things like TTL.
-- It's possible to run whole Nuxt3 stack on GCP (cloud functions, memorystore, hosting), but there are many considerations for production use as the framework does not solve problems like connection pools for Redis or cold start issues.
-
+- Using Supabase with custom issued JWT worked fine
+  - set auth.users.id as key 'sub' in JWT is only required
+  - Since the interface to set custom JWT to the Supabase client is limited on 'createClient', additional thought is required to make it handy.
+- Implementation of Nuxt3 / useStorage may not be mature yet
+  - While it's easy to build access to Redis, it's hard to appropriately set things like TTL.
+  - Using other library could be handy for now.
+- It's possible to run whole Nuxt3 stack on GCP (cloud functions, memorystore, hosting)
+  - There are performance concerns due to the cloud functions cold starts and lack of connection pools.
+  - On the other hand, network bandwidth optimization is possible by using serverless VPC access connectors.
+  - If the usage of APIs are limited to authentication processes and API communication with the IdP, it may be practical.
 
 ## Goals
 
@@ -17,13 +23,13 @@ A repository for testing how to implement a system using Nuxt3, Supabase, and Fi
   - enable session w/redis
     - [x] issue sessionID on server side and set-cookie to client
     - [ ] set ttl for server side session
-    - [ ] save sessionID related values into server side redis (state, nonce, IdP access_token, IdP refresh_token)
+    - [x] save sessionID related values into server side redis (state, nonce, IdP access_token, IdP refresh_token)
     - [ ] connect server APIs to redis hosted on firebase memorystore
   - Supabase JWT
     - [x] issue custom Supabase JWT securely
     - [X] call supabase database with custom issued JWT
 - firebase
-  - [x] connect to cloud memorystore redis from firebase cloud functions
+  - [ ] connect to cloud memorystore redis from firebase cloud functions
   - [ ] connect to supabase postgresql from firebase cloud functions
   - [ ] use firebase cloud functions gen 2 environment
 
