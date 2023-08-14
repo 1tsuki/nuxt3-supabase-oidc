@@ -60,6 +60,11 @@
     </div>
 
     <div>
+      <h2>oidc</h2>
+      <div><NuxtLink to="/api/oidc/init" :external="true">init OIDC</NuxtLink></div>
+    </div>
+
+    <div>
       <h2>Runtime config in client side</h2>
       <p>{{ JSON.stringify(config) }}</p>
     </div>
